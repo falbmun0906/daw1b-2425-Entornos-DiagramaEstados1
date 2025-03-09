@@ -6,7 +6,7 @@ El sistema de cajero automático simula el proceso de interacción de un usuario
 
 ## Diagrama de Estados
 
-A continuación se muestra el diagrama de estados que describe los distintos estados y transiciones del sistema:
+A continuación se presenta el diagrama de estados con las transiciones y condiciones que ocurren durante el uso del cajero automático.
 
 ```plantuml
 @startuml
@@ -37,7 +37,53 @@ RetenerTarjeta --> StandBy
 
 ![image](https://github.com/user-attachments/assets/0a1ca3b3-65f1-4d56-8d52-cd98687dcece)
 
+
+
 ## Descripción de Estados y Transiciones
+
+### Elementos del Diagrama de Estados
+
+### Estados
+Los **estados** representan las diferentes situaciones o condiciones en las que el sistema puede estar en un momento dado. Cada estado describe un punto específico en el proceso, y el sistema se encuentra en un solo estado a la vez. Los estados pueden ser tanto finales (como cuando la sesión termina) como intermedios (como cuando se espera que el usuario ingrese un PIN).
+
+**Ejemplos:**
+- **StandBy:** El cajero está esperando a que el usuario inserte una tarjeta.
+- **ValidarTarjeta:** El sistema valida si la tarjeta insertada es válida o no.
+
+### Transiciones
+Las **transiciones** son los cambios de un estado a otro y representan el flujo del proceso. Cada transición ocurre en función de un evento o acción que se produce en el sistema. A menudo, se asocian a condiciones que deben cumplirse para que la transición se ejecute.
+
+**Ejemplos:**
+- **StandBy --> ValidarTarjeta:** Ocurre cuando el usuario inserta una tarjeta.
+- **ValidarTarjeta --> IntroducirPIN:** Ocurre cuando la tarjeta es validada como válida.
+
+### Condiciones
+Las **condiciones** definen los requisitos necesarios para que se lleve a cabo una transición entre dos estados. Estas condiciones dependen de eventos o decisiones que el sistema debe tomar en función de las entradas o acciones del usuario.
+
+**Ejemplos:**
+- **Tarjeta válida:** La tarjeta debe ser válida para que el sistema pase al estado de "IntroducirPIN".
+- **PIN incorrecto:** Se requiere que el PIN ingresado sea incorrecto para que el sistema permita reintentar.
+
+### Pseudoestados
+Los **pseudoestados** son elementos en el diagrama que no representan un estado real, pero sirven para ayudar a organizar las transiciones o marcar puntos importantes dentro del flujo. El pseudoestado más común es el punto de inicio (representado por [*]), que indica el comienzo del proceso, y los puntos de finalización, como cuando la sesión se cierra.
+
+**Ejemplos:**
+- **[*] (Inicio):** Representa el comienzo del proceso del sistema, en el que el cajero espera la inserción de la tarjeta.
+- **FinSesion:** El pseudoestado que indica que la sesión ha terminado y el proceso regresa a un estado inicial.
+
+### Eventos
+Los **eventos** son las acciones o sucesos que causan las transiciones entre estados. Estos eventos pueden ser la acción de un usuario, como insertar una tarjeta o ingresar un PIN, o eventos del sistema que requieren tomar una acción, como la finalización de una transacción.
+
+**Ejemplos:**
+- **Insertar tarjeta:** Es el evento que causa que el sistema pase del estado StandBy al estado ValidarTarjeta.
+- **Cancelar:** Es el evento que causa que el sistema pase del estado IntroducirPIN al estado StandBy.
+
+### Acciones
+Las **acciones** son las actividades o tareas que se ejecutan cuando el sistema entra en un estado determinado o durante una transición. En un diagrama de estados, las acciones pueden estar asociadas con un estado o con una transición entre estados.
+
+**Ejemplos:**
+- **Acción en "IntroducirPIN":** El sistema muestra el campo para que el usuario ingrese su PIN.
+- **Acción en "EjecucionTransaccion":** El sistema realiza la transacción seleccionada por el usuario, como un retiro o consulta de saldo.
 
 A continuación, se describe el flujo de estados y las transiciones del sistema:
 
